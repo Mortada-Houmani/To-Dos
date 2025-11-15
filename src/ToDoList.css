@@ -1,14 +1,29 @@
 body{
     background-color: hsl(0, 0%, 10%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 .to-do-list{
     font-family: Arial, sans-serif;
     text-align: center;
     margin-top: 100px;
+    background-color: #6d6d6d;
+    width: 1000px;
+    border-radius: 30px;
+    padding-bottom: 15px;
+    padding-top: px;
+    border-radius: 12px;
+    box-shadow:  7px 7px 7px #3d3d3d;
+    
+             
 }
 h1{
+    padding-top:15px ;
     font-size: 4rem;
     color: white;
+    
 }
 button{
     font-size: 1.7rem;
@@ -19,9 +34,17 @@ button{
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
 }
+
 .add-button{
     background-color: hsl(125, 47%, 54%);
+    display: inline-block;
+    margin-left: 4px;
+    
 }
 .add-button:hover{
     background-color: hsl(125, 47%, 44%);
@@ -37,6 +60,10 @@ button{
 }
 .move-button:hover{
     background-color: hsl(207, 90%, 54%);
+}
+.plus{
+    width: 32px;
+    height: 32px;
 }
 input[type="text"]{
     font-size: 1.6rem;
@@ -70,3 +97,41 @@ li{
     font-size: 1.4rem;
     margin-left: 10px;
 }
+/* Make lucide icons centered inside buttons */
+button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+/* Fix input while editing */
+.edit-input {
+    flex: 1;
+    font-size: 1.6rem;
+    padding: 8px;
+    border: 2px solid hsla(0, 0%, 70%, 0.8);
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+/* Ensure SVG icons scale properly */
+button svg {
+    width: 20px;
+    height: 20px;
+}
+.input-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+}
+
+
+.completed {
+  text-decoration: line-through;
+  opacity: 0.6;
+  color: hsl(0, 0%, 40%);
+}
+
+
