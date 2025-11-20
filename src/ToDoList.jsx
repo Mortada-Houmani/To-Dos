@@ -78,7 +78,7 @@ function ToDoList() {
     localStorage.setItem("tasks", JSON.stringify(updatedTasks));
   }
 
-  const completedCount = tasks.filter(t => t.completed).length;
+  const completedCount = tasks.filter((t) => t.completed).length;
 
   return (
     <div className="to-do-list">
@@ -97,9 +97,21 @@ function ToDoList() {
         </button>
       </div>
 
-      <p style={{ color: "white", marginTop: "10px" }}>
-        Completed: {completedCount} / {tasks.length}
-      </p>
+      <div className="progress-container">
+        <div className="progress-top">
+          <span>Progress</span>
+          <span>{completedCount} / {tasks.length}</span>
+        </div>
+
+        <div className="progress-bar">
+          <div
+            className="progress-fill"
+            style={{
+              width: tasks.length === 0 ? "0%" : `${(completedCount / tasks.length) * 100}%`,
+            }}
+          ></div>
+        </div>
+      </div>
 
       <ol>
         {tasks.map((task, index) => (
