@@ -4,34 +4,84 @@ import { Trash2, ArrowUp, ArrowDown, Pencil, Plus, Save, X } from "lucide-react"
 function ToDoList() {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState("");
-
   const [editingIndex, setEditingIndex] = useState(null);
   const [editingText, setEditingText] = useState("");
 
   useEffect(() => {
-    const savedTasks = JSON.parse(localStorage.getItem("tasks"));
-    if (savedTasks) {
-      setTasks(savedTasks);
-    }
+    fetchTasks();
   }, []);
 
   function handleInputChange(event) {
     setNewTask(event.target.value);
   }
 
-  function addTask() {
-    if (newTask.trim() !== "") {
-      const newTasks = [...tasks, { text: newTask, completed: false }];
-      setTasks(newTasks);
-      setNewTask("");
-      localStorage.setItem("tasks", JSON.stringify(newTasks));
+  async function fetchTasks() {
+    try {
+      const response = await fetch("http://localhost:3000/tasks");
+      const data = await response.json();
+      setTasks(data);
+    } catch (error) {
+      console.error("Error fetching tasks:", error);
     }
   }
 
-  function deleteTask(index) {
-    const updatedTasks = tasks.filter((_, i) => i !== index);
-    setTasks(updatedTasks);
-    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+  async function addTask() {
+    if (newTask.trim() !== "") {
+      try {
+        const response = await fetch("http://localhost:3000/tasks", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ text: newTask })
+        });
+        const task = await response.json();
+        setTasks([...tasks, task]);
+        setNewTask("");
+      } catch (error) {
+        console.error("Error adding task:", error);
+      }
+    }
+  }
+
+  async function deleteTask(id) {
+    try {
+      await fetch(`http://localhost:3000/tasks/${id}`, { method: "DELETE" });
+      setTasks(tasks.filter(t => t.id !== id));
+    } catch (error) {
+      console.error("Error deleting task:", error);
+    }
+  }
+
+  async function saveEdit(index) {
+    const task = tasks[index];
+    try {
+      await fetch(`http://localhost:3000/tasks/${task.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: editingText, completed: task.completed })
+      });
+      const updatedTasks = [...tasks];
+      updatedTasks[index].text = editingText;
+      setTasks(updatedTasks);
+      setEditingIndex(null);
+    } catch (error) {
+      console.error("Error updating task:", error);
+    }
+  }
+
+  async function toggleCompleted(index) {
+    const task = tasks[index];
+    try {
+      await fetch(`http://localhost:3000/tasks/${task.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: task.text, completed: !task.completed })
+      });
+      const updatedTasks = [...tasks];
+      updatedTasks[index].completed = !updatedTasks[index].completed;
+      setTasks(updatedTasks);
+    } catch (error) {
+      console.error("Error toggling task:", error);
+    }
   }
 
   function moveTaskUp(index) {
@@ -42,7 +92,6 @@ function ToDoList() {
         updatedTasks[index],
       ];
       setTasks(updatedTasks);
-      localStorage.setItem("tasks", JSON.stringify(updatedTasks));
     }
   }
 
@@ -54,28 +103,12 @@ function ToDoList() {
         updatedTasks[index],
       ];
       setTasks(updatedTasks);
-      localStorage.setItem("tasks", JSON.stringify(updatedTasks));
     }
   }
 
   function startEditing(index) {
     setEditingIndex(index);
     setEditingText(tasks[index].text);
-  }
-
-  function saveEdit(index) {
-    const updatedTasks = [...tasks];
-    updatedTasks[index].text = editingText;
-    setTasks(updatedTasks);
-    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
-    setEditingIndex(null);
-  }
-
-  function toggleCompleted(index) {
-    const updatedTasks = [...tasks];
-    updatedTasks[index].completed = !updatedTasks[index].completed;
-    setTasks(updatedTasks);
-    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
   }
 
   const completedCount = tasks.filter((t) => t.completed).length;
@@ -115,7 +148,7 @@ function ToDoList() {
 
       <ol>
         {tasks.map((task, index) => (
-          <li key={index}>
+          <li key={task.id}>
             {editingIndex === index ? (
               <>
                 <input
@@ -152,7 +185,7 @@ function ToDoList() {
                   <Pencil size={20} />
                 </button>
 
-                <button className="delete-button" onClick={() => deleteTask(index)}>
+                <button className="delete-button" onClick={() => deleteTask(task.id)}>
                   <Trash2 size={20} />
                 </button>
 
