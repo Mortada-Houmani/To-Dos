@@ -2,11 +2,20 @@ const express = require("express");
 const router = express.Router();
 const { AppDataSource } = require("../data-source");
 const Task = require("../entities/task");
-const repo = AppDataSource.getRepository("Task")
+const { Like } = require("typeorm"); 
+const repo = AppDataSource.getRepository("Task");
+
 router
   .route("/")
   .get(async (req, res) => {
-    const tasks = await repo.find();
+    const { query } = req.query;        
+    console.log("Query parameters:", query);
+
+    const where = query
+      ? { text: Like(`%${query}%`) }   
+      : {};
+
+    const tasks = await repo.find({ where });
     res.json(tasks);
   })
   .post(async (req, res) => {
