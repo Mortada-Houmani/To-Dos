@@ -2,7 +2,9 @@
 
 A full-stack productivity application that combines task management with the Pomodoro Technique to help users stay focused and organized.
 
-![Application Screenshot](screenshot.png)
+![Home Screenshot](screenshot.png)
+![Login Screenshot](login.png)
+![Signup Screenshot](signup.png)
 
 ## Features
 
@@ -21,6 +23,6 @@ A full-stack productivity application that combines task management with the Pom
 **Backend:**
 - Express.js
 - JWT authentication for secure user sessions
-- PostgreSQL/SQLite for database management
+- SQLite for database management
 
 ---

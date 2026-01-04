@@ -10,20 +10,21 @@ router
   .get(async (req, res) => {
     const { query } = req.query;        
     console.log("Query parameters:", query);
-
+    
     const where = query
       ? { text: Like(`%${query}%`) }   
       : {};
 
-    const tasks = await repo.find({ where });
+    const tasks = await repo.find({ where:{...where, user_id:req.user.userId} });
     res.json(tasks);
   })
+  //create task
   .post(async (req, res) => {
     const { text } = req.body;
 
     if (!text) return res.status(400).json({ error: "Text is required" });
 
-    const task = repo.create({ text, completed: false });
+    const task = repo.create({ text, completed: false, user_id:req.user.userId });
     const saved = await repo.save(task);
     res.json(saved);
   });
@@ -34,7 +35,7 @@ router
     const { id } = req.params;
     const { text, completed } = req.body;
 
-    const task = await repo.findOneBy({ id });
+    const task = await repo.findOneBy({ id, user_id:req.user.userId });
     if (!task) return res.status(404).json({ error: "Task not found" });
 
     task.text = text;

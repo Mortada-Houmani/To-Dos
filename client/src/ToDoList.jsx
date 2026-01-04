@@ -2,15 +2,22 @@ import React, { useState, useEffect } from "react";
 import { Trash2, ArrowUp, ArrowDown, Pencil, Plus, Save, X } from "lucide-react";
 import useDebounce from "./hooks/useDebounce";
 import PomodoroTimer from "./pomodoro.jsx";
+import "./ToDoList.css";
+import { Link, useNavigate } from 'react-router-dom';
 
 function ToDoList() {
+  const Navigate = useNavigate();
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState("");
   const [editingIndex, setEditingIndex] = useState(null);
   const [editingText, setEditingText] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
-
+  const token = localStorage.getItem('token');
   useEffect(() => {
+    if (!token) {
+      Navigate('/login');
+    }
+  
     fetchTasks();
   }, []);
 
@@ -22,10 +29,15 @@ function ToDoList() {
 
   async function fetchTasks() {
     try {
+      
       const url = debouncedSearchQuery
         ? `http://localhost:3000/tasks?query=${encodeURIComponent(debouncedSearchQuery)}`
         : "http://localhost:3000/tasks";
-      const response = await fetch(url);
+      const response = await fetch(url, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
       const data = await response.json();
       setTasks(data);
     } catch (error) {
@@ -42,7 +54,9 @@ function ToDoList() {
       try {
         const response = await fetch("http://localhost:3000/tasks", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: { "Content-Type": "application/json",
+            'Authorization': `Bearer ${token}`
+           },
           body: JSON.stringify({ text: newTask })
         });
         const task = await response.json();
@@ -56,7 +70,11 @@ function ToDoList() {
 
   async function deleteTask(id) {
     try {
-      await fetch(`http://localhost:3000/tasks/${id}`, { method: "DELETE" });
+      await fetch(`http://localhost:3000/tasks/${id}`, { method: "DELETE" }, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
       setTasks(tasks.filter(t => t.id !== id));
     } catch (error) {
       console.error("Error deleting task:", error);
@@ -68,7 +86,9 @@ function ToDoList() {
     try {
       await fetch(`http://localhost:3000/tasks/${task.id}`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", 
+          'Authorization': `Bearer ${token}`
+         },
         body: JSON.stringify({ text: editingText, completed: task.completed })
       });
       const updatedTasks = [...tasks];
@@ -85,7 +105,9 @@ function ToDoList() {
     try {
       await fetch(`http://localhost:3000/tasks/${task.id}`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", 
+          'Authorization': `Bearer ${token}`
+         },
         body: JSON.stringify({ text: task.text, completed: !task.completed })
       });
       const updatedTasks = [...tasks];

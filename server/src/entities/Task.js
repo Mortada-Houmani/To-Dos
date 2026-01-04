@@ -1,3 +1,4 @@
+
 const { EntitySchema } = require("typeorm");
 
 module.exports = new EntitySchema({
@@ -15,6 +16,19 @@ module.exports = new EntitySchema({
     completed: {
       type: "boolean",
       default: false,
+    },
+    user_id: {
+      type: "integer",
+    },
+  },
+  relations: {
+    user: {
+      type: "many-to-one",
+      target: "User",
+      joinColumn: {
+        name: "user_id",  
+      },
+      inverseSide: "tasks",  
     },
   },
 });
