@@ -1,6 +1,6 @@
 /*main style*/
 body {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: radial-gradient(1200px 700px at 10% 10%, #2b2f55 0%, #141625 55%, #0b0d16 100%);
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -23,12 +23,12 @@ body {
 /* Glassmorphism effect */
 .to-do-list {
     text-align: center;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(16, 18, 30, 0.65);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 24px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
     width: 100%;
     max-width: 700px;
     padding: 40px 30px;
@@ -39,7 +39,7 @@ body {
 h1 {
     font-size: 3.5rem;
     font-weight: 700;
-    color: white;
+    color: #f3f4ff;
     margin: 0 0 30px 0;
     letter-spacing: -1px;
 }
@@ -48,7 +48,7 @@ button {
     font-size: 1rem;
     font-weight: 600;
     padding: 12px 20px;
-    color: white;
+    color: #f7f8ff;
     border: none;
     border-radius: 12px;
     cursor: pointer;
@@ -57,7 +57,7 @@ button {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
 }
 
 button:hover {
@@ -70,40 +70,40 @@ button:active {
 }
 
 .add-button {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #3f6bff 0%, #2b2fdd 100%);
     display: inline-block;
     margin-left: 8px;
 }
 
 .add-button:hover {
-    background: linear-gradient(135deg, #5568d3 0%, #653a8a 100%);
+    background: linear-gradient(135deg, #365ce0 0%, #2428bf 100%);
 }
 
 .delete-button {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    background: linear-gradient(135deg, #ff6b7a 0%, #d63856 100%);
     padding: 10px 14px;
 }
 
 .delete-button:hover {
-    background: linear-gradient(135deg, #d67ee0 0%, #d94358 100%);
+    background: linear-gradient(135deg, #e65c6c 0%, #bf2f4a 100%);
 }
 
 .move-button {
-    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    background: linear-gradient(135deg, #3aa7ff 0%, #0dd3e6 100%);
     padding: 10px 14px;
 }
 
 .move-button:hover {
-    background: linear-gradient(135deg, #3a93e0 0%, #00d4e0 100%);
+    background: linear-gradient(135deg, #2f90df 0%, #0bbcd0 100%);
 }
 
 input[type="text"] {
     font-size: 1.1rem;
     padding: 14px 18px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 12px;
-    background: rgba(255, 255, 255, 0.9);
-    color: #333;
+    background: rgba(12, 14, 24, 0.85);
+    color: #e9ecff;
     transition: all 0.3s ease;
     outline: none;
     width: 100%;
@@ -111,18 +111,18 @@ input[type="text"] {
 }
 
 input[type="text"]:focus {
-    border-color: rgba(255, 255, 255, 0.6);
-    background: rgba(255, 255, 255, 1);
-    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1);
+    border-color: rgba(95, 130, 255, 0.6);
+    background: rgba(12, 14, 24, 0.95);
+    box-shadow: 0 0 0 4px rgba(95, 130, 255, 0.15);
 }
 
 .search {
     font-size: 1.1rem;
     padding: 14px 18px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 12px;
-    background: rgba(255, 255, 255, 0.9);
-    color: #333;
+    background: rgba(12, 14, 24, 0.85);
+    color: #e9ecff;
     width: 100%;
     max-width: 300px;
     margin-bottom: 15px;
@@ -130,9 +130,9 @@ input[type="text"]:focus {
 }
 
 .search:focus {
-    border-color: rgba(255, 255, 255, 0.6);
-    background: rgba(255, 255, 255, 1);
-    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1);
+    border-color: rgba(95, 130, 255, 0.6);
+    background: rgba(12, 14, 24, 0.95);
+    box-shadow: 0 0 0 4px rgba(95, 130, 255, 0.15);
     outline: none;
 }
 
@@ -146,15 +146,15 @@ li {
     font-size: 1.1rem;
     font-weight: 500;
     padding: 18px 20px;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(18, 20, 34, 0.9);
     margin-bottom: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 16px;
     display: flex;
     align-items: center;
     gap: 12px;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
 }
 
 li:hover {
@@ -166,29 +166,30 @@ input[type="checkbox"] {
     width: 22px;
     height: 22px;
     cursor: pointer;
-    accent-color: #667eea;
+    accent-color: #5f82ff;
 }
 
 .text {
     flex: 1;
     text-align: left;
-    color: #333;
+    color: #e8ebff;
 }
 
 .completed {
     text-decoration: line-through;
-    opacity: 0.5;
-    color: #666;
+    opacity: 0.45;
+    color: #9aa0c4;
 }
 
 .edit-input {
     flex: 1;
     font-size: 1.1rem;
     padding: 10px 14px;
-    border: 2px solid rgba(102, 126, 234, 0.5);
+    border: 1px solid rgba(95, 130, 255, 0.6);
     border-radius: 12px;
-    background: white;
+    background: rgba(10, 12, 22, 0.95);
     margin-right: 0;
+    color: #e9ecff;
 }
 
 button svg {
@@ -200,7 +201,7 @@ button svg {
     width: 93%;
     margin: 25px 0;
     padding: 20px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(16, 18, 30, 0.6);
     border-radius: 16px;
     backdrop-filter: blur(10px);
 }
@@ -211,33 +212,33 @@ button svg {
     margin-bottom: 12px;
     font-size: 1.1rem;
     font-weight: 600;
-    color: white;
+    color: #f0f2ff;
 }
 
 .progress-bar {
     width: 100%;
     height: 14px;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.25);
 }
 
 .progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+    background: linear-gradient(90deg, #3aa7ff 0%, #0dd3e6 100%);
     transition: width 0.5s ease;
     border-radius: 10px;
 }
 
 /* Pomodoro Timer Styles */
 .pomodoro-timer {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(16, 18, 30, 0.65);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 24px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
     padding: 40px 35px;
     text-align: center;
     min-width: 350px;
@@ -245,7 +246,7 @@ button svg {
 }
 
 .pomodoro-timer h2 {
-    color: white;
+    color: #f3f4ff;
     font-size: 2rem;
     font-weight: 700;
     margin: 0 0 35px 0;
@@ -253,22 +254,22 @@ button svg {
 }
 
 .timer-display {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(20, 22, 36, 0.7);
     backdrop-filter: blur(10px);
     border-radius: 20px;
     padding: 50px 30px;
     margin-bottom: 30px;
-    box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: inset 0 6px 14px rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .timer-display span {
     font-size: 5.5rem;
     font-weight: 700;
-    color: white;
+    color: #f3f4ff;
     font-family: 'SF Mono', 'Monaco', 'Courier New', monospace;
     letter-spacing: 8px;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
 }
 
 .timer-controls {
@@ -281,34 +282,34 @@ button svg {
     width: 100%;
     font-size: 1.1rem;
     padding: 16px;
-    background: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(10px);
     transition: all 0.3s ease;
 }
 
 .timer-controls button:hover {
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.14);
     transform: translateY(-2px);
 }
 
 .timer-controls button:first-child {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #3f6bff 0%, #2b2fdd 100%);
     border: none;
 }
 
 .timer-controls button:first-child:hover {
-    background: linear-gradient(135deg, #5568d3 0%, #653a8a 100%);
+    background: linear-gradient(135deg, #365ce0 0%, #2428bf 100%);
 }
 
 /* Settings Styles */
 .settings-container {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(16, 18, 30, 0.65);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 24px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
     padding: 40px 35px;
     text-align: center;
     min-width: 350px;
@@ -316,7 +317,7 @@ button svg {
 }
 
 .settings-container h2 {
-    color: white;
+    color: #f3f4ff;
     font-size: 2rem;
     font-weight: 700;
     margin: 0 0 35px 0;
@@ -330,7 +331,7 @@ button svg {
 
 .setting-item label {
     display: block;
-    color: white;
+    color: #f0f2ff;
     font-size: 1rem;
     font-weight: 600;
     margin-bottom: 10px;
@@ -340,19 +341,19 @@ button svg {
     width: 100%;
     font-size: 1.1rem;
     padding: 14px 18px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 12px;
-    background: rgba(255, 255, 255, 0.9);
-    color: #333;
+    background: rgba(12, 14, 24, 0.85);
+    color: #e9ecff;
     box-sizing: border-box;
     transition: all 0.3s ease;
     outline: none;
 }
 
 .setting-item input[type="number"]:focus {
-    border-color: rgba(255, 255, 255, 0.6);
-    background: rgba(255, 255, 255, 1);
-    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1);
+    border-color: rgba(95, 130, 255, 0.6);
+    background: rgba(12, 14, 24, 0.95);
+    box-shadow: 0 0 0 4px rgba(95, 130, 255, 0.15);
 }
 
 .settings-buttons {
@@ -368,20 +369,20 @@ button svg {
 }
 
 .settings-buttons button:first-child {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #3f6bff 0%, #2b2fdd 100%);
 }
 
 .settings-buttons button:first-child:hover {
-    background: linear-gradient(135deg, #5568d3 0%, #653a8a 100%);
+    background: linear-gradient(135deg, #365ce0 0%, #2428bf 100%);
 }
 
 .settings-buttons button:last-child {
-    background: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .settings-buttons button:last-child:hover {
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.14);
 }
 
 /* Responsive Design */
